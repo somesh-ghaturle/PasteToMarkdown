@@ -45,7 +45,6 @@ pasteArea.addEventListener('input', convertToMarkdown);
 copyButton.addEventListener('click', () => {
     outputArea.select();
     document.execCommand('copy');
-    alert('Markdown copied to clipboard!');
 });
 
 // Download Markdown as a .md file
