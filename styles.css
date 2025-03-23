@@ -47,9 +47,13 @@ textarea {
     resize: none;
 }
 
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
 button {
-    display: block;
-    width: 100%;
+    flex: 1;
     padding: 10px;
     margin: 10px 0;
     font-size: 16px;
@@ -58,6 +62,14 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+#resetButton {
+    background-color: #dc3545;
+}
+
+#resetButton:hover {
+    background-color: #c82333;
 }
 
 button:hover {
