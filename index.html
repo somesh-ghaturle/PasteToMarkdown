@@ -9,12 +9,15 @@
 <body>
     <div class="container">
         <h1>Paste to Markdown</h1>
+        <div class="controls-top">
+            <button id="darkModeToggle">Toggle Dark Mode</button>
+        </div>
         <div id="pasteArea" contenteditable="true" placeholder="Paste your formatted content here..."></div>
         <h2>Markdown Output</h2>
         <textarea id="outputArea" readonly></textarea>
         <div class="button-group">
             <button id="copyButton">Copy to Clipboard</button>
-            <button id="resetButton" type="reset">Reset</button>
+            <button id="resetButton">Reset</button>
             <button id="downloadButton">Download as .md File</button>
         </div>
     </div>
