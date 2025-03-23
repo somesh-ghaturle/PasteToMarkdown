@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const copyButton = document.getElementById('copyButton');
     const resetButton = document.getElementById('resetButton');
     const downloadButton = document.getElementById('downloadButton');
+    const darkModeToggle = document.getElementById('darkModeToggle');
 
     // Initialize Turndown Service
     const turndownService = new TurndownService({
@@ -49,17 +50,20 @@ document.addEventListener('DOMContentLoaded', function() {
         document.execCommand('copy');
     });
 
-    // Reset both input and output areas
+    // Reset both input and output areas - FIXED VERSION
     resetButton.addEventListener('click', function() {
-        // Use textContent instead of innerHTML for more thorough clearing
-        pasteArea.textContent = '';
+        // Clear content directly using DOM methods
+        while (pasteArea.firstChild) {
+            pasteArea.removeChild(pasteArea.firstChild);
+        }
         outputArea.value = '';
         
-        // Force a refresh of the contenteditable area
-        pasteArea.blur();
-        setTimeout(() => {
-            pasteArea.focus();
-        }, 0);
+        // Force a UI refresh
+        const event = new Event('input', {
+            bubbles: true,
+            cancelable: true,
+        });
+        pasteArea.dispatchEvent(event);
     });
 
     // Download Markdown as a .md file
@@ -79,6 +83,22 @@ document.addEventListener('DOMContentLoaded', function() {
         a.click();
         URL.revokeObjectURL(url);
     });
+
+    // Toggle Dark Mode
+    darkModeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        // Save preference to localStorage
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    });
+
+    // Check for saved dark mode preference
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+    }
 
     // Initialize the output area
     convertToMarkdown();
