@@ -4,6 +4,7 @@
 const pasteArea = document.getElementById('pasteArea');
 const outputArea = document.getElementById('outputArea');
 const copyButton = document.getElementById('copyButton');
+const resetButton = document.getElementById('resetButton');
 const downloadButton = document.getElementById('downloadButton');
 
 // Initialize Turndown Service
@@ -45,6 +46,12 @@ pasteArea.addEventListener('input', convertToMarkdown);
 copyButton.addEventListener('click', () => {
     outputArea.select();
     document.execCommand('copy');
+});
+
+// Reset both input and output areas
+resetButton.addEventListener('click', () => {
+    pasteArea.innerHTML = '';
+    outputArea.value = '';
 });
 
 // Download Markdown as a .md file
