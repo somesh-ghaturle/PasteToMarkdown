@@ -45,30 +45,3 @@ pasteArea.addEventListener('input', convertToMarkdown);
 // Copy Markdown to Clipboard
 copyButton.addEventListener('click', () => {
     outputArea.select();
-    document.execCommand('copy');
-});
-
-// Reset both input and output areas
-resetButton.addEventListener('click', () => {
-    pasteArea.innerHTML = '';
-    outputArea.value = '';
-});
-
-// Download Markdown as a .md file
-downloadButton.addEventListener('click', () => {
-    const markdownContent = outputArea.value;
-    if (!markdownContent.trim()) {
-        alert('No content to download!');
-        return;
-    }
-    const blob = new Blob([markdownContent], { type: 'text/markdown' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'output.md';
-    a.click();
-    URL.revokeObjectURL(url);
-});
-
-// Initialize the output area
-convertToMarkdown();
