@@ -29,6 +29,7 @@ h1, h2 {
     border: 1px solid #ccc;
     border-radius: 4px;
     overflow: auto;
+    box-sizing: border-box;
 }
 
 #pasteArea:empty:before {
@@ -45,6 +46,7 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: none;
+    box-sizing: border-box;
 }
 
 .button-group {
