@@ -50,20 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
         document.execCommand('copy');
     });
 
-    // Reset both input and output areas - FIXED VERSION
+    // SIMPLIFIED RESET FUNCTION
     resetButton.addEventListener('click', function() {
-        // Clear content directly using DOM methods
-        while (pasteArea.firstChild) {
-            pasteArea.removeChild(pasteArea.firstChild);
-        }
+        // Simply set the inner HTML to an empty string
+        pasteArea.innerHTML = '';
         outputArea.value = '';
         
-        // Force a UI refresh
-        const event = new Event('input', {
-            bubbles: true,
-            cancelable: true,
-        });
-        pasteArea.dispatchEvent(event);
+        // Force a refresh of the output area
+        convertToMarkdown();
     });
 
     // Download Markdown as a .md file
